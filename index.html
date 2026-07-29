@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>to do list!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2> my to do list!</h2> <hr> <br>
+         <div class="header-card">
+        
+        <input id="task" placeholder="New Task">
+        <button id="addBtn" onclick="addTask()">+</button>
+
+        </div>
+        <div class="list-card" id="list-card">
+            <ul id="taskList"></ul> <br>
+            <button id="clearAll" onclick="clearAll()"> Clear All</button>
+        </div>
+    </div>
+   
+
+    <script src="script.js"></script>
+</body>
+</html>

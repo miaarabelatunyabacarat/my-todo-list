@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkgrey;
+}
+.container {
+    padding: 32px;
+    background-color: aliceblue;
+    width: 500px;
+    border-radius: 12px;
+}
+h2 {
+    font-family: serif;
+    font-style: italic;
+    margin-bottom: 12px;
+}
+.header-card, .list-card {
+    padding: 24px;
+}
+.header-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-card input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.header-card button {
+    width: 50px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+.list-card{
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+    transition: opacity .25s ease, transform .25s ease;
+}
+.list-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+#list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#taskList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#taskList li {
+    padding: 12px;
+    opacity: 0;
+    transform: translateY(-10px);
+
+    transition: all .1s ease;
+}
+#taskList li.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+#clearAll {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
