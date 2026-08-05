@@ -3,11 +3,18 @@ const taskList = document.getElementById("taskList");
 const listCard = document.getElementById("list-card");
 const clearBtn = document.getElementById("clearAll");
 const addBtn = document.getElementById("addBtn");
+const saveBtn = document.getElementById("saveBtn");
+
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
+
+saveBtn.addEventListener("click", function() {
+    saveTodos();
+    alert("Tasks are saved!");
+});
 function saveTodos(){
     localStorage.setItem("todos",JSON.stringify(todos));
-    alert("todo list saved!");
+    
 }
 function renderTodos() {
     console.log(todos);
