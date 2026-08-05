@@ -7,6 +7,7 @@ let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 function saveTodos(){
     localStorage.setItem("todos",JSON.stringify(todos));
+    alert("todo list saved!");
 }
 function renderTodos() {
     console.log(todos);
