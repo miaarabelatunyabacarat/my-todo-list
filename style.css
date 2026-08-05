@@ -8,10 +8,26 @@ body {
     background-color: darkgrey;
 }
 .container {
-    padding: 32px;
-    background-color: aliceblue;
+    padding: 32px 32px 32px 50px;
     width: 500px;
-    border-radius: 12px;
+    background-color: #eef6ff;
+
+    background-image: 
+        linear-gradient(
+            to right,
+            transparent 40px,
+            rgba(255, 90, 90, .5) 40px,
+            rgba(255, 90, 90, .5) 42px,
+            transparent 42px
+        ),
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 31px,
+            rgba(120,160,255,.25) 32px
+        );
+
+        border-radius: 12px;
 }
 h2 {
     font-family: serif;
@@ -57,7 +73,7 @@ h2 {
 #list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 6px;
 }
 
 #taskList {
@@ -65,10 +81,12 @@ h2 {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 0;
 }
 #taskList li {
-    padding: 12px;
+    padding: 0;
     opacity: 0;
+    justify-content: flex-start;   
     transform: translateY(-10px);
 
     transition: all .1s ease;
@@ -84,3 +102,24 @@ h2 {
     cursor: pointer;
 }
 
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.6;
+}
+#taskList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    border: 2px solid #b8b8ff46;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 5px;
+
+    background: white;
+}
+
+.delete-btn {
+    margin-left: auto;
+}
