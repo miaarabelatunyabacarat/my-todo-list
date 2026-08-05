@@ -3,72 +3,101 @@ const taskList = document.getElementById("taskList");
 const listCard = document.getElementById("list-card");
 const clearBtn = document.getElementById("clearAll");
 const addBtn = document.getElementById("addBtn");
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
+function saveTodos(){
+    localStorage.setItem("todos",JSON.stringify(todos));
+}
+function renderTodos() {
+    console.log(todos);
+    taskList.innerHTML = "";
+
+    if (todos.length > 0) {
+        listCard.classList.add("show");
+    } else {
+        listCard.classList.remove("show");
+    }
+
+    todos.forEach((todo, index) => {
+        console.log(todo);
+            listCard.classList.add("show");
+
+        const li = document.createElement("li");
+
+        //checkbox
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+
+        const span = document.createElement("span");
+        span.textContent = todo.text;
+        span.classList.add("task-text");
+
+        if (todos.completed){
+            span.classList.add("completed");
+        }
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerHTML = "&times";
+        deleteBtn.classList.add("delete-btn");
+
+        checkbox.addEventListener("change", ()=> {
+            if (checkbox.checked) {
+                span.classList.add("completed");
+            } else {
+                span.classList.remove("completed")
+            }
+        });
+
+        checkbox.addEventListener("change", ()=> {
+            todos[index].completed = checkbox.checked;
+            saveTodos();
+            renderTodos();
+        })
+        deleteBtn.addEventListener("click", ()=>{
+            todos.splice(index, 1);
+            saveTodos();
+            renderTodos();
+    });
+
+        li.append(checkbox, span, deleteBtn);
+        taskList.appendChild(li);
+
+
+        requestAnimationFrame(() => {
+            li.classList.add("show");
+            
+        });
+
+        
+        });
+}
 function addTask() {
     //console.log("Button clicked!");
     const text = taskInput.value.trim();
 
+    
     if (text === "") {
          alert("please add your task");
          return;
     }
-    listCard.classList.add("show");
 
-    const li = document.createElement("li");
-
-
-    //checkbox
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-
-    const span = document.createElement("span");
-    span.textContent = text;
-    span.classList.add("task-text");
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "&times";
-    deleteBtn.classList.add("delete-btn");
-
-    checkbox.addEventListener("change", ()=> {
-        if (checkbox.checked) {
-            span.classList.add("completed");
-        } else {
-            span.classList.remove("completed")
-        }
+    todos.push({
+    text: text,
+    completed: false
     });
 
-    deleteBtn.addEventListener("click", ()=>{
-        li.style.opacity = "0";
-        li.style.transform = "translateX(30px)";
-
-        setTimeout(() => {
-            li.remove();
-
-            if (taskList.children.length === 0) {
-                listCard.classList.remove("show");
-            }
-        }, 250);
-    });
-
-    li.appendChild(checkbox);
-    li.appendChild(span);
-    li.appendChild(deleteBtn);
-
-    taskList.appendChild(li);
-
-
-    requestAnimationFrame(() => {
-        li.classList.add("show");
-        console.log(listCard.className);
-    });
-
+    saveTodos();
+    renderTodos();
     taskInput.value = "";
     taskInput.focus();
+
+
 }
 
 function clearAll(){
-    taskList.innerHTML = "";
-
+    todos = [];
+    saveTodos();
+    renderTodos();
 
     listCard.classList.remove("show");
 }
@@ -81,3 +110,4 @@ taskInput.addEventListener("keydown", function(e) {
 
 document.getElementById("addBtn").addEventListener("click", addTask);
 document.getElementById("clearAll").addEventListener("click", clearAll);
+renderTodos();
