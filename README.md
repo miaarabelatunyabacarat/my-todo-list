@@ -1,5 +1,7 @@
 <h1>To do list</h1>
 
+🧷Link: 
+
 📝This is a todo list made with HTML, CSS and JAVASCRIPT! It features a notebook style and pleasing colors <br>
 
 📌it has features such as:
@@ -30,5 +32,6 @@ This project was created to practice:
 - JavaScript Arrays & Objects
 
   <hr>
-made with love by
+made with love by <br>
+https://github.com/miaarabelatunyabacarat <br>
 2026
